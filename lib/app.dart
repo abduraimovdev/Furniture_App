@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_app/screens/boarding_screen.dart';
 import 'package:furniture_app/services/app_routes.dart';
 import 'package:furniture_app/services/theme/app_theme.dart';
 
