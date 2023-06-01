@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum CustomColors {
+enum AppColors {
   c303030("0xFF303030", Color(0xFF303030)),
   c909090("0xFF909090", Color(0xFF909090)),
   c606060("0xFF606060", Color(0xFF606060)),
@@ -13,10 +13,13 @@ enum CustomColors {
   cF2994A("0xFFF2994A", Color(0xFFF2994A)),
   cEB5757("0xFFEB5757", Color(0xFFEB5757)),
   cF0F0F0("0xFFF0F0F0", Color(0xFFF0F0F0)),
+  cF9F9F9("0xFFF9F9F9", Color(0xFFF9F9F9)),
   c27AE60("0xFF27AE60", Color(0xFF27AE60)),
+  cFFFFFF("0xFFFFFFFF", Color(0xFFFFFFFF)),
+  c212121("0xFF212121", Color(0xFF212121)),
   cF2C94C("0xFFF2C94C", Color(0xFFF2C94C));
 
-  const CustomColors(this.title, this.color);
+  const AppColors(this.title, this.color);
   final String title;
   final Color color;
 }
