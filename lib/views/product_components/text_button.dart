@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../services/constants/colors.dart';
-import '../../../services/theme/text_styles.dart';
+import '../../services/constants/colors.dart';
+import '../../services/theme/text_styles.dart';
 
 class AppTextButton extends StatelessWidget {
   final void Function() onPress;

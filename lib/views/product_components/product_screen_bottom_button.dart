@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../services/constants/colors.dart';
-import '../../../services/constants/strings.dart';
-import '../../../services/constants/svg_icons.dart';
+import '../../services/constants/colors.dart';
+import '../../services/constants/strings.dart';
+import '../../services/constants/svg_icons.dart';
 import 'icon_button.dart';
 import 'text_button.dart';
 

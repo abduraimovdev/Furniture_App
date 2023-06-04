@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../services/constants/colors.dart';
+import '../../services/constants/colors.dart';
 
 class ProductImages extends StatefulWidget {
   final void Function() backOnPress;

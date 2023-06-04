@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import '../../../services/constants/colors.dart';
-import '../../../services/constants/strings.dart';
-import '../../../services/constants/svg_icons.dart';
-import '../../../services/theme/text_styles.dart';
+import '../../services/constants/colors.dart';
+import '../../services/constants/strings.dart';
+import '../../services/constants/svg_icons.dart';
+import '../../services/theme/text_styles.dart';
 import 'icon_button.dart';
 
 class ProductScreenData extends StatelessWidget {

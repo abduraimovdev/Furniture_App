@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../services/constants/colors.dart';
-import '../../../services/constants/images.dart';
+import '../../services/constants/colors.dart';
+import '../../services/constants/images.dart';
 import 'product_image.dart';
 
 class ProductScreenImage extends StatelessWidget {
