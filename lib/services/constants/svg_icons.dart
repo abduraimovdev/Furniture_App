@@ -1,5 +1,5 @@
 import 'package:flutter_svg/svg.dart';
-
+import 'colors.dart';
 import 'icons.dart';
 
 abstract class SvgIcon {
@@ -29,4 +29,6 @@ abstract class SvgIcon {
   static final SvgPicture star = SvgPicture.asset(CustomIcons.star.path);
   static final SvgPicture table = SvgPicture.asset(CustomIcons.table.path);
   static final SvgPicture cancel = SvgPicture.asset(CustomIcons.cancel.path);
+  static final SvgPicture logo = SvgPicture.asset(CustomIcons.logo.path);
+  static final SvgPicture markerDark = SvgPicture.asset(CustomIcons.marker.path, color: AppColors.c303030.color);
 }

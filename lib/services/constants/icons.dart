@@ -24,7 +24,8 @@ enum CustomIcons {
   search("ic_search", "assets/icons/ic_search.svg"),
   star("ic_star", "assets/icons/ic_star.svg"),
   table("ic_table", "assets/icons/ic_table.svg"),
-  cancel("ic_cancel", "assets/icons/ic_cancel.svg");
+  cancel("ic_cancel", "assets/icons/ic_cancel.svg"),
+  logo("ic_logo", "assets/icons/ic_logo.svg");
 
   const CustomIcons(this.name, this.path);
   final String name;

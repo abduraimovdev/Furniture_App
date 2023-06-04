@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_app/screens/sing_in_screen.dart';
 import 'package:furniture_app/services/constants/colors.dart';
 import 'package:furniture_app/services/constants/images.dart';
 import 'package:furniture_app/services/constants/strings.dart';
@@ -24,7 +25,8 @@ class BoardingScreen extends StatelessWidget {
 
         /// #backgroundImage
         decoration: BoxDecoration(
-          image: DecorationImage(image: AppImage.onBoarding.img, fit: BoxFit.cover),
+          image: DecorationImage(
+              image: AppImage.onBoarding.img, fit: BoxFit.cover),
         ),
         child: SingleChildScrollView(
           child: Column(
@@ -59,7 +61,13 @@ class BoardingScreen extends StatelessWidget {
               SizedBox(height: 155 * height / 815),
 
               /// #getSterted
-              Center(child: GetStartedButton(onPressed: () {})),
+              Center(
+                child: GetStartedButton(
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(context, SignInScreen.id);
+                  },
+                ),
+              ),
             ],
           ),
         ),

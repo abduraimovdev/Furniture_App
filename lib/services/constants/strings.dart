@@ -59,7 +59,17 @@ enum Strings {
   discover("Discover hot sale furnitures this week."),
   loremIpsum("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Turpis pretium et in\narcu adipiscing nec. Turpis pretium\net in arcu adipiscing nec. Turpis pretium et in arcu adipiscing nec. "),
   hot("HOT!"),
-  newText("New");
+  newText("New"),
+  beautiful('BEAUTIFUL'),
+  favorite('FAVORITE'),
+  coffeeTable('Coffee Table'),
+  coffeeChair('Coffee Chair'),
+  minimalDesk('Minimal Desk'),
+  minimalLamp('Minimal Lamp'),
+  data("20/03/2020"),
+  quantityNum("03"),
+  price("\$150"),
+  makeHome('Make home');
 
   const Strings(this.text);
 
