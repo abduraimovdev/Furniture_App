@@ -8,22 +8,20 @@ class AppTextButton extends StatelessWidget {
   final String label;
   const AppTextButton({
     super.key,
-    required this.w,
-    required this.h,
+
     required this.onPress,
     required this.label,
   });
 
-  final double w;
-  final double h;
-
   @override
   Widget build(BuildContext context) {
+      double height = MediaQuery.of(context).size.height / 812;
+    double width = MediaQuery.of(context).size.width / 375;
     return Material(
       child: TextButton(
         style: TextButton.styleFrom(
           backgroundColor: AppColors.c303030.color,
-          minimumSize: Size(250 * w, 60 * h),
+          minimumSize: Size(250 * width, 60 * height),
           elevation: 30,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),

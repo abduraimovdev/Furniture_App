@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class CustomTabBaraWidget extends StatefulWidget {
+class CustomTabBarWidget extends StatefulWidget {
   final void Function()? onPressed;
   final Color color;
   final String text;
   final TextStyle style;
   final Widget widget;
 
-   const CustomTabBaraWidget({
+   const CustomTabBarWidget({
     Key? key,
     required this.onPressed,
     required this.color,
@@ -17,12 +17,10 @@ class CustomTabBaraWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<CustomTabBaraWidget> createState() => _CustomTabBaraWidgetState();
+  State<CustomTabBarWidget> createState() => _CustomTabBarWidgetState();
 }
 
-class _CustomTabBaraWidgetState extends State<CustomTabBaraWidget> {
-  bool isVisible = false;
-
+class _CustomTabBarWidgetState extends State<CustomTabBarWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_app/controllers/order_controller.dart';
 import 'package:furniture_app/services/constants/colors.dart';
 import 'package:furniture_app/services/constants/strings.dart';
 import 'package:furniture_app/services/theme/text_styles.dart';
@@ -12,6 +13,7 @@ class OrderContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
+    final navController=OrderController();
     return Container(
       height: height * .21,
       width: width * .89,
@@ -87,7 +89,7 @@ class OrderContainer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 DetailButton(
-                  onPressed: () {},
+                  onPressed: ()=> navController.goToDetail(context),
                 ),
                 SizedBox(
                   width: width * .37,

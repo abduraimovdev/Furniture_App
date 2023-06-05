@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:furniture_app/controllers/product_controller.dart';
+import 'package:furniture_app/screens/review_screen.dart';
 
 import '../../services/constants/colors.dart';
 import '../../services/constants/strings.dart';
@@ -11,26 +11,25 @@ import 'icon_button.dart';
 class ProductScreenData extends StatelessWidget {
   const ProductScreenData({
     super.key,
-    required this.width,
-    required this.height,
-    required int count,
-    required this.decrement,
-    required this.increment,
-  }) : _count = count;
 
-  final double width;
-  final double height;
-  final int _count;
-  final void Function() increment;
-  final void Function() decrement;
+    required this.controller,
+  });
+
+
+  final ProductController controller;
 
   @override
   Widget build(BuildContext context) {
+        double height = MediaQuery.of(context).size.height / 812;
+    double width = MediaQuery.of(context).size.width / 375;
     return Expanded(
       flex: 3,
       child: Padding(
         padding: EdgeInsets.only(
-            left: 25 * width, right: 25 * width, top: 25 * height, bottom: 25 * height),
+            left: 25 * width,
+            right: 25 * width,
+            top: 25 * height,
+            bottom: 25 * height),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -42,8 +41,8 @@ class ProductScreenData extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  "\$ 50",
+                Text(
+                  "\$ ${controller.sum}",
                   style: AppTextStyles.nunitoSansBold30,
                 ),
                 SizedBox(
@@ -59,10 +58,10 @@ class ProductScreenData extends StatelessWidget {
                           color: AppColors.c909090.color,
                           size: 25,
                         ),
-                        onPress: increment,
+                        onPress: controller.increment,
                       ),
                       Text(
-                        "$_count".padLeft(2, "0"),
+                        "${controller.count}".padLeft(2, "0"),
                         style: AppTextStyles.nunitoSansBold18,
                       ),
                       AppIconButton(
@@ -73,7 +72,7 @@ class ProductScreenData extends StatelessWidget {
                           color: AppColors.c909090.color,
                           size: 25,
                         ),
-                        onPress: decrement,
+                        onPress: controller.decrement,
                       ),
                     ],
                   ),
@@ -81,72 +80,43 @@ class ProductScreenData extends StatelessWidget {
               ],
             ),
             SizedBox(height: 10 * height),
-            GestureDetector(
-              onTap: () => btnReview(context),
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: 20 * width,
-                    height: 20 * height,
-                    child: SvgIcon.star,
-                  ),
-                  SizedBox(width: 10 * width),
-                  const Text(
+            Row(
+              children: [
+                SizedBox(
+                  width: 20 * width,
+                  height: 20 * height,
+                  child: SvgIcon.star,
+                ),
+                SizedBox(width: 10 * width),
+                GestureDetector(
+                  onTap: () => controller.btnReview(context),
+                  child: const Text(
                     "4.5",
                     style: AppTextStyles.nunitoSansBold18,
                   ),
-                  SizedBox(width: 20 * width),
-                  Text(
+                ),
+                SizedBox(width: 20 * width),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(ReviewScreen.id);
+                  },
+                  child: Text(
                     "(50 reviews)",
                     style: AppTextStyles.nunitoSansBold14
                         .copyWith(color: AppColors.c808080.color),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
             SizedBox(height: 14 * height),
             Text(
-              "Minimal Stand is made of by natural wood. The design that is very simple and minimal. This is truly one of the best furnitures in any family for now. With 3 different colors, you can easily select the best match for your home. ",
+              controller.product.desc,
               style: AppTextStyles.nunitoSansLight14.copyWith(
                 wordSpacing: 3,
                 height: 1.5,
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  void btnReview(BuildContext context) {
-    showModalBottomSheet(
-      backgroundColor: Colors.black,
-      context: context,
-      builder: (context) => BottomSheet(
-        onClosing: () {},
-        builder: (context) => Container(
-          width: MediaQuery.of(context).size.width * .8,
-          height: 200,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              RatingBar.builder(
-                initialRating: 3,
-                minRating: 1,
-                direction: Axis.horizontal,
-                allowHalfRating: true,
-                itemCount: 5,
-                itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                itemBuilder: (context, _) => const Icon(
-                  Icons.star,
-                  color: Colors.amber,
-                ),
-                onRatingUpdate: (rating) {
-                  print(rating);
-                },
-              ),
-            ],
-          ),
         ),
       ),
     );

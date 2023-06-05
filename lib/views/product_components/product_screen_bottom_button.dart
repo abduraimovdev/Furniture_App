@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_app/controllers/product_controller.dart';
 
 import '../../services/constants/colors.dart';
 import '../../services/constants/strings.dart';
@@ -7,17 +8,13 @@ import 'icon_button.dart';
 import 'text_button.dart';
 
 class ProductScreenBottomButton extends StatefulWidget {
-  final void Function() onPress;
+  final ProductController controller;
 
   const ProductScreenBottomButton({
     super.key,
-    required this.width,
-    required this.height,
-    required this.onPress,
+    required this.controller,
   });
 
-  final double width;
-  final double height;
 
   @override
   State<ProductScreenBottomButton> createState() =>
@@ -25,44 +22,38 @@ class ProductScreenBottomButton extends StatefulWidget {
 }
 
 class _ProductScreenBottomButtonState extends State<ProductScreenBottomButton> {
-  bool isSaved = false;
-
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height / 812;
+    double width = MediaQuery.of(context).size.width / 375;
     return Expanded(
       child: Padding(
         padding: EdgeInsets.only(
-          left: 20 * widget.width,
-          right: 25 * widget.width,
-          bottom: 30 * widget.height,
+          left: 20 * width,
+          right: 25 * width,
+          bottom: 30 * height,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             AppIconButton(
-              width: 60 * widget.width,
-              height: 60 * widget.height,
-              icon: isSaved ? SvgIcon.marker : SvgIcon.markerDark,
-              onPress: btnSave,
-              backgroundColor: isSaved
+              width: 60 * width,
+              height: 60 * height,
+              icon: widget.controller.isFavourite
+                  ? SvgIcon.marker
+                  : SvgIcon.markerDark,
+              onPress: widget.controller.btnFavourite,
+              backgroundColor: widget.controller.isFavourite
                   ? AppColors.c303030.color
                   : AppColors.cE0E0E0.color.withOpacity(0.3),
             ),
             AppTextButton(
-              w: widget.width,
-              h: widget.height,
               label: Strings.addToCart.text,
-              onPress: widget.onPress,
+              onPress: () => widget.controller.addToCard(context),
             ),
           ],
         ),
       ),
     );
-  }
-
-  void btnSave() {
-    setState(() {
-      isSaved = !isSaved;
-    });
   }
 }

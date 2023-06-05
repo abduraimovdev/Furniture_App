@@ -17,9 +17,12 @@ class AppThemeData {
       scaffoldBackgroundColor: colorScheme.background,
       highlightColor: Colors.transparent,
       focusColor: focusColor,
-      appBarTheme: const AppBarTheme(
+      appBarTheme: AppBarTheme(
+        elevation: 0,
         centerTitle: true,
-        titleTextStyle: AppTextStyles.merriWeatherBold18,
+        titleTextStyle: AppTextStyles.merriWeatherBold18.copyWith(
+          color: colorScheme.secondary,
+        ),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
@@ -32,7 +35,6 @@ class AppThemeData {
           minimumSize: const Size(300, 50),
         ),
       ),
-
     );
   }
 

@@ -1,3 +1,7 @@
+import 'package:furniture_app/models/category_model.dart';
+import 'package:furniture_app/models/review_model.dart';
+
+
 class Product implements Comparable<Product>{
   String id;
   String name;
@@ -38,9 +42,9 @@ class Product implements Comparable<Product>{
         images: json["images"] as Map<int, List<String>>,
         colors: json["colors"] as List<int>,
         sku: json["sku"] as String,
-        category: json["category"] as Category,
+        category:  Category.fromJson(json["category"] as Map<String, Object?>),
         price: json["price"] as double,
-        review: json["review"] as List<Review>,
+        review: (json["review"] as List).map<Review>((json) => Review.fromJson(json as Map<String, Object?>)).toList(),
         isFavorite: json["isFavorite"] as bool,
         totalQuantity: json["totalQuantity"] as Map<int, int>,
       );
@@ -54,9 +58,9 @@ class Product implements Comparable<Product>{
         "images": images,
         "colors": colors,
         "sku": sku,
-        "category": category,
+        "category": category.toJson(),
         "price": price,
-        "review": review,
+        "review": review.map((e) => e.toJson()).toList(),
         "isFavorite": isFavorite,
         "totalQuantity": totalQuantity,
       };
@@ -94,7 +98,3 @@ class Product implements Comparable<Product>{
     return id.compareTo(other.id);
   }
 }
-
-class Review {}
-
-class Category {}

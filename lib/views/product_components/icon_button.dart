@@ -32,9 +32,12 @@ class AppIconButton extends StatefulWidget {
 class _AppIconButtonState extends State<AppIconButton> {
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height / 812;
+    double w = MediaQuery.of(context).size.width / 375;
     return TextButton(
       style: TextButton.styleFrom(
-        backgroundColor: widget.backgroundColor ?? AppColors.cE0E0E0.color.withOpacity(0.3),
+        backgroundColor:
+            widget.backgroundColor ?? AppColors.cE0E0E0.color.withOpacity(0.3),
         minimumSize: Size(
             widget.width ?? 30 * widget.w!, widget.width ?? 30 * widget.h!),
         shape: RoundedRectangleBorder(

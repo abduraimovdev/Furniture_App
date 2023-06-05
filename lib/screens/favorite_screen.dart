@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:furniture_app/screens/congrats_screen.dart';
 import 'package:furniture_app/services/constants/images.dart';
 import 'package:furniture_app/services/constants/svg_icons.dart';
 import 'package:furniture_app/services/constants/colors.dart';
-import 'package:furniture_app/services/constants/icons.dart';
 import 'package:furniture_app/services/constants/strings.dart';
 import 'package:furniture_app/services/theme/text_styles.dart';
 
@@ -171,7 +169,6 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                       ),
                     ),
                   ),
-
                   ElevatedButton(
                     onPressed: () {
                       Navigator.pushNamed(context, CongratsScreen.id);
@@ -264,15 +261,20 @@ class ProductWidget extends StatelessWidget {
               const Spacer(
                 flex: 1,
               ),
-              Container(
-                padding: const EdgeInsets.all(6),
-                  width: 34,
-                  height: 34,
-                  decoration: BoxDecoration(
-                    color: AppColors.cE0E0E0.color,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: SvgIcon.cart2),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, CongratsScreen.id);
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(6),
+                    width: 34,
+                    height: 34,
+                    decoration: BoxDecoration(
+                      color: AppColors.cE0E0E0.color,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: SvgIcon.cart2),
+              ),
             ],
           ),
         ],

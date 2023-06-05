@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_app/screens/profile_screen.dart';
+import 'package:furniture_app/controllers/order_controller.dart';
+import 'package:furniture_app/screens/order_internal/delivered_screen.dart';
 import 'package:furniture_app/services/constants/colors.dart';
 import 'package:furniture_app/services/constants/strings.dart';
 import 'package:furniture_app/services/theme/text_styles.dart';
-
 import 'order_internal/canceled_screen.dart';
-import 'order_internal/delivered_screen.dart';
 import 'order_internal/processing_screen.dart';
 
 class OrderScreen extends StatefulWidget {
@@ -20,6 +19,7 @@ class OrderScreen extends StatefulWidget {
 class _OrderScreenState extends State<OrderScreen>
     with SingleTickerProviderStateMixin {
   late TabController controller;
+  late OrderController navController;
 
   @override
   void initState() {
@@ -46,9 +46,7 @@ class _OrderScreenState extends State<OrderScreen>
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pushReplacementNamed(ProfileScreen.id);
-          },
+          onPressed: ()=>navController.goToProfile(context),
           icon: Icon(
             Icons.arrow_back_ios,
             color: AppColors.c303030.color,

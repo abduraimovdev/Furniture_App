@@ -1,20 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_app/screens/sing_in_screen.dart';
 import 'package:furniture_app/services/constants/svg_icons.dart';
 import 'package:furniture_app/services/constants/colors.dart';
 import 'package:furniture_app/services/constants/strings.dart';
 import 'package:furniture_app/services/theme/text_styles.dart';
 import 'package:furniture_app/views/custom_text_field.dart';
 import 'package:furniture_app/views/login_button.dart';
+import 'package:furniture_app/controllers/sign_up_controller.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
   static const id = "/signUp";
 
   const SignUpScreen({super.key});
 
   @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+
+  late final SignUpController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = SignUpController(updater: setState);
+  }
+
+  @override
+  void dispose() {
+    controller.close();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -43,6 +64,7 @@ class SignUpScreen extends StatelessWidget {
                     ],
                   ),
                 ),
+
                 // Text: Welcome Back
                 Align(
                   alignment: Alignment.centerLeft,
@@ -57,7 +79,6 @@ class SignUpScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 const SizedBox(height: 25),
                 Container(
                   alignment: Alignment.centerLeft,
@@ -79,6 +100,7 @@ class SignUpScreen extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 30),
                           child: CustomTextField(
+                            controller: controller.nameController,
                             labelText: Strings.name.text,
                             isObscure: false,
                           ),
@@ -89,24 +111,29 @@ class SignUpScreen extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 30),
                           child: CustomTextField(
+                            controller: controller.emailController,
                             labelText: Strings.email.text,
                             isObscure: false,
                           ),
                         ),
+
                         // Input: Password
                         const SizedBox(height: 35),
                         Padding(
                           padding: const EdgeInsets.only(left: 30),
                           child: CustomTextField(
+                            controller: controller.passwordController,
                             labelText: Strings.password.text,
                             isObscure: true,
                           ),
                         ),
+
                         // Input: Confirm password
                         const SizedBox(height: 35),
                         Padding(
                           padding: const EdgeInsets.only(left: 30),
                           child: CustomTextField(
+                            controller: controller.rePasswordController,
                             labelText: Strings.confirmPassword.text,
                             isObscure: true,
                           ),
@@ -115,7 +142,7 @@ class SignUpScreen extends StatelessWidget {
                         // Button: Sign up
                         const SizedBox(height: 50),
                         LoginButton(
-                          onPressed: () {},
+                          onPressed: () => controller.signUp(context),
                           text: Strings.signUp.text,
                         ),
 
@@ -133,10 +160,7 @@ class SignUpScreen extends StatelessWidget {
                             ),
                             const SizedBox(width: 8),
                             GestureDetector(
-                              onTap: () {
-                                Navigator.of(context)
-                                    .pushReplacementNamed(SignInScreen.id);
-                              },
+                              onTap: () => controller.goToSignIn(context),
                               child: Text(
                                 Strings.signIn.text,
                                 style: AppTextStyles.nunitoSansBold14,
