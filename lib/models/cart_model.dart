@@ -1,23 +1,24 @@
 
-import 'product_model.dart';
+import 'package:furniture_app/models/cart_item_model.dart';
+
 
 class CartModel implements Comparable {
   String id;
-  Product product;
+  List<CartItem> carts;
   double total;
   String createdAt;
   String modifyAt;
   String userId;
-  int quantity;
+  int amount;
 
   CartModel(
       {required this.id,
-      required this.product,
+      required this.carts,
       required this.total,
       required this.createdAt,
       required this.modifyAt,
       required this.userId,
-      required this.quantity});
+      required this.amount});
 
   @override
   int compareTo(other) {
@@ -26,40 +27,40 @@ class CartModel implements Comparable {
 
   factory CartModel.fromJson(Map<String, Object?> json) => CartModel(
       id: json["id"] as String,
-      product: Product.fromJson(json["product"] as Map<String, Object>),
+      carts: (json["carts"] as List).map<CartItem>((json) => CartItem.fromJison(json as Map<String, Object?>)).toList(),
       total: json["total"] as double,
       createdAt: json["createdAt"] as String,
       modifyAt: json["modifyAt"] as String,
       userId: json["userId"] as String,
-      quantity: json["quantity"] as int);
+      amount: json["amount"] as int);
 
   Map<String, Object> toJson() => {
         "userId": userId,
         "id": id,
-        "product": product.toJson(),
+        "carts": carts.map((e) => e.toJson()).toList(),
         "total": total,
         "createdAt": createdAt,
         "modifyAt": modifyAt,
-        "quantity": quantity,
+        "amount": amount,
       };
 
   @override
   String toString() {
-    return "CartModel(id: $id, product: $product, total: $total, createdAt: $createdAt, modifyAt: $modifyAt, userId: $userId, quantity: $quantity)";
+    return "CartModel(id: $id, carts: $carts, total: $total, createdAt: $createdAt, modifyAt: $modifyAt, userId: $userId, amount: $amount)";
   }
 
   @override
   bool operator ==(Object other) =>
       other is CartModel &&
           id == other.id &&
-          product == other.product &&
+          carts == other.carts &&
           total == other.total &&
           createdAt == other.createdAt &&
           modifyAt == other.modifyAt &&
           userId == other.userId &&
-          quantity == other.quantity;
+          amount == other.amount;
 
   @override
-  int get hashCode => Object.hash(id, product,total, createdAt, modifyAt,userId,quantity);
+  int get hashCode => Object.hash(id, carts,total, createdAt, modifyAt,userId,amount);
 
 }

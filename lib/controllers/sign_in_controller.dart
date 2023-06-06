@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:furniture_app/controllers/base_controller.dart';
-import 'package:furniture_app/screens/home_screen.dart';
-import 'package:furniture_app/screens/sign_up_screen.dart';
+import 'package:furniture_app/services/app_routes.dart';
+import 'package:furniture_app/services/data/database/users.dart';
+import 'package:furniture_app/views/utils/message_components.dart';
 
 class SignInController extends BaseController {
   TextEditingController emailController;
@@ -21,27 +23,27 @@ class SignInController extends BaseController {
   }
 
   void signIn(BuildContext context) async {
-
     isLoading = true;
     updater!(() {});
 
     String email = emailController.text.trim();
     String password = passwordController.text.trim();
-    // validation
 
     debugPrint(email);
     debugPrint(password);
-    // connect network ...
-    await Future.delayed(const Duration(seconds: 2));
+
+    /// user exist:
+    for (int i = 0; i < usersList.length; i++) {
+      if (usersList[i].email == email && usersList[i].password == password) {
+        currentUser = usersList[i];
+        isLoading = false;
+        updater!(() {});
+        AppRoutes.pushReplaceHome(context);
+        return;
+      }
+    }
     isLoading = false;
     updater!(() {});
-    /// user exist:
-    Navigator.of(context).pushReplacementNamed(HomeScreen.id);
-
-    /// user not found: error message
-  }
-
-  void goToSignUp(BuildContext context) {
-    Navigator.of(context).pushReplacementNamed(SignUpScreen.id);
+    AppMessage.customSnackBar(context: context, content: "Wrong email or password!");
   }
 }

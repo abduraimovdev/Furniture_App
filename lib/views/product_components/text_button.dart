@@ -20,13 +20,13 @@ class AppTextButton extends StatelessWidget {
     return Material(
       child: TextButton(
         style: TextButton.styleFrom(
-          backgroundColor: AppColors.c303030.color,
+          backgroundColor: AppColors.c303030,
           minimumSize: Size(250 * width, 60 * height),
           elevation: 30,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           ),
-          shadowColor: AppColors.c303030.color.withOpacity(0.4),
+          shadowColor: AppColors.c303030.withOpacity(0.4),
         ),
         onPressed: onPress,
         child: Text(

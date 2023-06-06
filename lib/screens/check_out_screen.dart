@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:furniture_app/services/constants/svg_icons.dart';
 import 'package:furniture_app/views/check_out_components/check_out_components.dart';
 
+
 class CheckOutScreen extends StatelessWidget {
   static const id = "/checkOut";
   const CheckOutScreen({super.key});
@@ -22,6 +23,7 @@ class CheckOutScreen extends StatelessWidget {
       body: Column(
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               //Text: Shipping Address
               Padding(
@@ -29,7 +31,7 @@ class CheckOutScreen extends StatelessWidget {
                 child: shipping(),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 135.0),
+                padding: const EdgeInsets.only(),
                 child: editButton(),
               ),
             ],
@@ -37,7 +39,7 @@ class CheckOutScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 15.0, left: 20, right: 20),
             child: Container(
-              height: height / 6,
+              height: height / 6.5,
               width: width,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
@@ -52,10 +54,11 @@ class CheckOutScreen extends StatelessWidget {
                 ],
               ),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   //Text: Bruno Fernandes
                   Padding(
-                    padding: const EdgeInsets.only(right: 140, left: 20, top: 15),
+                    padding: const EdgeInsets.only(top:15.0,left: 10),
                     child: brunoFernandes(),
                   ),
                   const Divider(
@@ -63,7 +66,7 @@ class CheckOutScreen extends StatelessWidget {
                   ),
                   //Description: Text
                   Padding(
-                    padding: const EdgeInsets.only(left: 15, right: 15),
+                    padding: const EdgeInsets.only(left: 10.0),
                     child: descriptionTxt(),
                   ),
                 ],
@@ -71,10 +74,11 @@ class CheckOutScreen extends StatelessWidget {
             ),
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               //Text: Payment
               Padding(
-                padding: const EdgeInsets.only(top: 30.0, left: 20, right: 172),
+                padding: const EdgeInsets.only(top: 30.0, left: 20),
                 child: paymentText(),
               ),
               Padding(
@@ -101,6 +105,7 @@ class CheckOutScreen extends StatelessWidget {
                 ],
               ),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(
@@ -123,13 +128,11 @@ class CheckOutScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        child: SvgIcon.card),
+                        child: SvgIcon.card,
+                        ),
                   ),
                   //Text-Card Number
-                  Padding(
-                    padding: const EdgeInsets.only(left: 19.0),
-                    child: cardNumber(),
-                  ),
+                  cardNumber(),
                 ],
               ),
             ),
@@ -137,7 +140,7 @@ class CheckOutScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 15.0, left: 20, right: 20),
             child: Container(
-              height: height / 4.5,
+              height: height / 5,
               width: width,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
@@ -153,50 +156,42 @@ class CheckOutScreen extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  Row(
-                    children: [
-                      //Order Text
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(right: 20, left: 20, top: 15),
-                        child: orderText(),
-                      ),
-                      //Price 95
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20, left: 120),
-                        child: price1(),
-                      ),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15,left: 15,right: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        //Order Text
+                        orderText(),
+                        //Price 95
+                        price1(),
+                      ],
+                    ),
                   ),
-                  Row(
-                    children: [
-                      //Delivery Text
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(right: 20, left: 20, top: 15),
-                        child: deliveryText(),
-                      ),
-                      //Price 5
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20, left: 98),
-                        child: price2(),
-                      ),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15,left: 15,right: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        //Delivery Text
+                        deliveryText(),
+                        //Price 5
+                        price2(),
+                      ],
+                    ),
                   ),
-                  Row(
-                    children: [
-                      //Total text
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(right: 20, left: 20, top: 15),
-                        child: totalText(),
-                      ),
-                      //Price 100
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20, left: 125),
-                        child: price3(),
-                      ),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15,left: 15,right: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        //Total text
+                        totalText(),
+                        //Price 100
+                        price3(),
+                        
+                      ],
+                    ),
                   ),
                 ],
               ),

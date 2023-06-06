@@ -24,7 +24,7 @@ class CongratsScreen extends StatelessWidget {
             Text(
               Strings.success.text,
               style: AppTextStyles.merriWeatherBold36.copyWith(
-                color: AppColors.c303030.color,
+                color: AppColors.c303030,
                 letterSpacing: 4,
               ),
             ),
@@ -57,7 +57,7 @@ class CongratsScreen extends StatelessWidget {
             Text(
               Strings.yourOrderWill.text,
               style: AppTextStyles.nunitoSansRegular18.copyWith(
-                color: AppColors.c303030.color,
+                color: AppColors.c303030,
                 height: 2,
               ),
             ),
@@ -66,8 +66,8 @@ class CongratsScreen extends StatelessWidget {
               onPressed: (){},
               style: ElevatedButton.styleFrom(
                 elevation: 10,
-                shadowColor: AppColors.c303030.color,
-                backgroundColor: AppColors.c303030.color,
+                shadowColor: AppColors.c303030,
+                backgroundColor: AppColors.c303030,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5),
                 ),
@@ -77,7 +77,7 @@ class CongratsScreen extends StatelessWidget {
                 Strings.trackYourOrder.text,
                 style: AppTextStyles.nunitoSansSemiBold18
                     .copyWith(
-                  color: AppColors.cFFFFFF.color,
+                  color: AppColors.cFFFFFF,
                 ),
               ),
             ),
@@ -85,10 +85,10 @@ class CongratsScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: (){},
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.cFFFFFF.color,
+                backgroundColor: AppColors.cFFFFFF,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5),
-                  side: BorderSide(color: AppColors.c303030.color),
+                  side: const BorderSide(color: AppColors.c303030),
                 ),
                 minimumSize: const Size(315, 60),
               ),
@@ -96,7 +96,7 @@ class CongratsScreen extends StatelessWidget {
                 Strings.backToHome.text,
                 style: AppTextStyles.nunitoSansSemiBold18
                     .copyWith(
-                  color: AppColors.c303030.color,
+                  color: AppColors.c303030,
                 ),
               ),
             ),

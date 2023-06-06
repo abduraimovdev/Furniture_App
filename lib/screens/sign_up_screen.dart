@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_app/services/constants/svg_icons.dart';
+import 'package:furniture_app/services/app_routes.dart';
 import 'package:furniture_app/services/constants/colors.dart';
 import 'package:furniture_app/services/constants/strings.dart';
 import 'package:furniture_app/services/theme/text_styles.dart';
+import 'package:furniture_app/views/auth_components/logo.dart';
 import 'package:furniture_app/views/custom_text_field.dart';
 import 'package:furniture_app/views/login_button.dart';
 import 'package:furniture_app/controllers/sign_up_controller.dart';
@@ -34,38 +35,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: SafeArea(
         minimum: const EdgeInsets.only(right: 30, bottom: 50),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
               children: [
-                // Logo
-                Padding(
-                  padding: const EdgeInsets.only(top: 40, bottom: 30, left: 30),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        height: 1,
-                        width: width / 3.5,
-                        color: AppColors.cBDBDBD.color,
-                      ),
-                      SvgIcon.logo,
-                      Container(
-                        height: 1,
-                        width: width / 3.5,
-                        color: AppColors.cBDBDBD.color,
-                      ),
-                    ],
-                  ),
-                ),
+                /// Logo
+                const Logo(),
 
-                // Text: Welcome Back
+                /// Text: Welcome Back
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
@@ -73,7 +55,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: Text(
                       Strings.welcome.text,
                       style: AppTextStyles.merriWeatherBold24.copyWith(
-                        color: AppColors.c303030.color,
+                        color: AppColors.c303030,
                         letterSpacing: 1.7,
                       ),
                     ),
@@ -83,7 +65,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 Container(
                   alignment: Alignment.centerLeft,
                   decoration: BoxDecoration(
-                    color: AppColors.cFFFFFF.color,
+                    color: AppColors.cFFFFFF,
                     boxShadow: [
                       BoxShadow(
                         offset: const Offset(0, 0),
@@ -95,7 +77,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: Center(
                     child: Column(
                       children: [
-                        // Input: Name
+                        /// Input: Name
                         const SizedBox(height: 35),
                         Padding(
                           padding: const EdgeInsets.only(left: 30),
@@ -103,10 +85,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             controller: controller.nameController,
                             labelText: Strings.name.text,
                             isObscure: false,
+                            wordTextCapitalization: true,
                           ),
                         ),
 
-                        // Input: Email
+                        /// Input: Email
                         const SizedBox(height: 35),
                         Padding(
                           padding: const EdgeInsets.only(left: 30),
@@ -117,7 +100,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
 
-                        // Input: Password
+                        /// Input: Password
                         const SizedBox(height: 35),
                         Padding(
                           padding: const EdgeInsets.only(left: 30),
@@ -128,7 +111,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
 
-                        // Input: Confirm password
+                        /// Input: Confirm password
                         const SizedBox(height: 35),
                         Padding(
                           padding: const EdgeInsets.only(left: 30),
@@ -139,14 +122,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
 
-                        // Button: Sign up
+                        /// Button: Sign up
                         const SizedBox(height: 50),
-                        LoginButton(
-                          onPressed: () => controller.signUp(context),
+                        AppMainButton(
+                          onPressWithContext: controller.signUp,
                           text: Strings.signUp.text,
                         ),
 
-                        // Text: All ready have account
+                        /// Text: All ready have account
                         const SizedBox(height: 30),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -155,12 +138,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               Strings.alreadyHaveAccount.text,
                               style:
                                   AppTextStyles.nunitoSansSemiBold14.copyWith(
-                                color: AppColors.c808080.color,
+                                color: AppColors.c808080,
                               ),
                             ),
                             const SizedBox(width: 8),
                             GestureDetector(
-                              onTap: () => controller.goToSignIn(context),
+                              onTap: () => AppRoutes.pushReplaceSignIn(context),
                               child: Text(
                                 Strings.signIn.text,
                                 style: AppTextStyles.nunitoSansBold14,

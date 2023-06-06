@@ -1,4 +1,3 @@
-import 'package:furniture_app/models/product_model.dart';
 
 /// alohida olib pagination qilish
 

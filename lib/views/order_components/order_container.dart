@@ -19,7 +19,7 @@ class OrderContainer extends StatelessWidget {
       width: width * .89,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: AppColors.cFFFFFF.color),
+          color: AppColors.cFFFFFF),
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -34,17 +34,17 @@ class OrderContainer extends StatelessWidget {
                 Text(
                   Strings.orderNo.text,
                   style: AppTextStyles.nunitoSansBold16
-                      .copyWith(color: AppColors.c303030.color),
+                      .copyWith(color: AppColors.c303030),
                 ),
                 Text(
                   Strings.data.text,
                   style: AppTextStyles.nunitoSansSemiBold16
-                      .copyWith(color: AppColors.c909090.color),
+                      .copyWith(color: AppColors.c909090),
                 ),
               ],
             ),
             Divider(
-              color: AppColors.cF0F0F0.color,
+              color: AppColors.cF0F0F0,
               thickness: 2,
               height: height * .0363,
             ),
@@ -58,12 +58,12 @@ class OrderContainer extends StatelessWidget {
                 Text(
                   Strings.quantity.text,
                   style: AppTextStyles.nunitoSansSemiBold16
-                      .copyWith(color: AppColors.c909090.color),
+                      .copyWith(color: AppColors.c909090),
                 ),
                 Text(
                   Strings.quantityNum.text,
                   style: AppTextStyles.nunitoSansBold16
-                      .copyWith(color: AppColors.c303030.color),
+                      .copyWith(color: AppColors.c303030),
                 ),
                 SizedBox(
                   width: width * .119,
@@ -71,12 +71,12 @@ class OrderContainer extends StatelessWidget {
                 Text(
                   Strings.totalAmount.text,
                   style: AppTextStyles.nunitoSansSemiBold16
-                      .copyWith(color: AppColors.c909090.color),
+                      .copyWith(color: AppColors.c909090),
                 ),
                 Text(
                   Strings.price.text,
                   style: AppTextStyles.nunitoSansBold16
-                      .copyWith(color: AppColors.c303030.color),
+                      .copyWith(color: AppColors.c303030),
                 ),
               ],
             ),
@@ -102,7 +102,7 @@ class OrderContainer extends StatelessWidget {
                     Text(
                       Strings.delivered.text,
                       style: AppTextStyles.nunitoSansSemiBold16
-                          .copyWith(color: AppColors.c27AE60.color),
+                          .copyWith(color: AppColors.c27AE60),
                     ),
                   ],
                 )

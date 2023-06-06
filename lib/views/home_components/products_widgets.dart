@@ -53,7 +53,7 @@ class CustomProductWidget extends StatelessWidget {
                   width: 35,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
-                    color: AppColors.c909090.color,
+                    color: AppColors.c909090,
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(6),

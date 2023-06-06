@@ -1,6 +1,6 @@
 import 'product_model.dart';
 
-class CartItem implements Comparable<CartItem>{
+class CartItem implements Comparable<CartItem> {
   String id;
   Product product;
   double total;
@@ -8,6 +8,7 @@ class CartItem implements Comparable<CartItem>{
   String modifyAt;
   String userId;
   int quantity;
+  int color;
 
   CartItem({
     required this.id,
@@ -17,6 +18,7 @@ class CartItem implements Comparable<CartItem>{
     required this.modifyAt,
     required this.userId,
     required this.quantity,
+    required this.color,
   });
 
   factory CartItem.fromJison(Map<String, Object?> json) => CartItem(
@@ -27,6 +29,7 @@ class CartItem implements Comparable<CartItem>{
         modifyAt: json["modifyAt"] as String,
         userId: json["userId"] as String,
         quantity: json["quantity"] as int,
+        color: json["color"] as int,
       );
 
   Map<String, Object?> toJson() => {
@@ -37,11 +40,12 @@ class CartItem implements Comparable<CartItem>{
         "modifyAt": modifyAt,
         "userId": userId,
         "quantity": quantity,
+        "color": color,
       };
 
   @override
   String toString() {
-    return 'CartItem{id: $id, product: $product, total: $total, createAt: $createAt, modifyAt: $modifyAt, userId: $userId, quantity: $quantity}';
+    return 'CartItem{id: $id, product: $product, total: $total, createAt: $createAt, modifyAt: $modifyAt, userId: $userId, quantity: $quantity, color: $color}';
   }
 
   @override
@@ -55,11 +59,12 @@ class CartItem implements Comparable<CartItem>{
           createAt == other.createAt &&
           modifyAt == other.modifyAt &&
           userId == other.userId &&
-          quantity == other.quantity;
+          quantity == other.quantity && 
+          color == other.color;
 
   @override
   int get hashCode =>
-      Object.hash(id, product, total, createAt, modifyAt, userId, quantity);
+      Object.hash(id, product, total, createAt, modifyAt, userId, quantity, color);
 
   @override
   int compareTo(other) {

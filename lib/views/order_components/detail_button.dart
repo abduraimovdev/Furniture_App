@@ -16,7 +16,7 @@ class DetailButton extends StatelessWidget {
         onPressed: onPressed,
        style: ElevatedButton.styleFrom(
          elevation: 0,
-           backgroundColor: AppColors.c303030.color,
+           backgroundColor: AppColors.c303030,
          minimumSize: Size(width*0.267, height*0.044),
          shape: const RoundedRectangleBorder(
            borderRadius: BorderRadius.horizontal(right: Radius.circular(4))
@@ -25,7 +25,7 @@ class DetailButton extends StatelessWidget {
         child: Text(
           Strings.detail.text,
           style: AppTextStyles.nunitoSansSemiBold16
-              .copyWith(color: AppColors.cFFFFFF.color),
+              .copyWith(color: AppColors.cFFFFFF),
         ));
   }
 }

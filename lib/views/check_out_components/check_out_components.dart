@@ -7,8 +7,8 @@ import 'package:furniture_app/services/theme/text_styles.dart';
 Text appBarText() {
   return Text(
     Strings.appBarCheckOut.text,
-    style: TextStyle(
-      color: AppColors.c303030.color,
+    style: const TextStyle(
+      color: AppColors.c303030,
     ),
   );
 }
@@ -80,7 +80,7 @@ Text paymentText() {
   return Text(
     Strings.payment.text,
     style:
-        AppTextStyles.nunitoSansBold18.copyWith(color: AppColors.c909090.color),
+        AppTextStyles.nunitoSansBold18.copyWith(color: AppColors.c909090),
   );
 }
 
@@ -88,7 +88,7 @@ Text descriptionTxt() {
   return Text(
     "25 rue Robert Latouche, Nice, 06200, Côte D’azur, France",
     style: AppTextStyles.nunitoSansRegular18
-        .copyWith(color: AppColors.c909090.color, fontSize: 14),
+        .copyWith(color: AppColors.c909090, fontSize: 14),
   );
 }
 
@@ -104,7 +104,7 @@ Text shipping() {
     "Shipping Address",
     style: TextStyle(
       fontFamily: "${AppTextStyles.nunitoSansSemiBold18.fontFamily}",
-      color: AppColors.c909090.color,
+      color: AppColors.c909090,
     ),
   );
 }

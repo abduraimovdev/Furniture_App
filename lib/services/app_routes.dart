@@ -1,9 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:furniture_app/screens/boarding_screen.dart';
 import 'package:furniture_app/screens/cart_screen.dart';
 import 'package:furniture_app/screens/check_out_screen.dart';
 import 'package:furniture_app/screens/congrats_screen.dart';
 import 'package:furniture_app/screens/favorite_screen.dart';
-import 'package:furniture_app/screens/home_screen.dart';
+import 'package:furniture_app/screens/main_screen.dart';
 import 'package:furniture_app/screens/notification_screen.dart';
 import 'package:furniture_app/screens/order_screen.dart';
 import 'package:furniture_app/screens/product_screen.dart';
@@ -19,27 +20,39 @@ class AppRoutes {
   AppRoutes._();
 
   static String? get initialRoute {
-    if(!isAuth) {
+    if (!isAuth) {
       return BoardingScreen.id;
     } else {
-      return HomeScreen.id;
+      return MainScreen.id;
     }
   }
 
   static final routes = {
-    BoardingScreen.id : (context) => const BoardingScreen(),
-    CartScreen.id : (context) => const CartScreen(),
-    CheckOutScreen.id : (context) => const CheckOutScreen(),
-    CongratsScreen.id : (context) => const CongratsScreen(),
-    FavoriteScreen.id : (context) => const FavoriteScreen(),
-    HomeScreen.id : (context) => const HomeScreen(),
-    NotificationScreen.id : (context) => const NotificationScreen(),
-    OrderScreen.id : (context) => const OrderScreen(),
-    ProductScreen.id : (context) => const ProductScreen(),
-    ProfileScreen.id : (context) => const ProfileScreen(),
-    ReviewScreen.id : (context) => const ReviewScreen(),
-    ShippingScreen.id : (context) => const ShippingScreen(),
-    SignUpScreen.id : (context) => const SignUpScreen(),
-    SignInScreen.id : (context) => const SignInScreen(),
+    BoardingScreen.id: (context) => const BoardingScreen(),
+    CartScreen.id: (context) => const CartScreen(),
+    CheckOutScreen.id: (context) => const CheckOutScreen(),
+    CongratsScreen.id: (context) => const CongratsScreen(),
+    FavoriteScreen.id: (context) => const FavoriteScreen(),
+    MainScreen.id: (context) => const MainScreen(),
+    NotificationScreen.id: (context) => const NotificationScreen(),
+    OrderScreen.id: (context) => const OrderScreen(),
+    ProductScreen.id: (context) => const ProductScreen(),
+    ProfileScreen.id: (context) => const ProfileScreen(),
+    ReviewScreen.id: (context) => const ReviewScreen(),
+    ShippingScreen.id: (context) => const ShippingScreen(),
+    SignUpScreen.id: (context) => const SignUpScreen(),
+    SignInScreen.id: (context) => const SignInScreen(),
   };
+
+  static void pushReplaceSignIn(BuildContext context) {
+    Navigator.pushReplacementNamed(context, SignInScreen.id);
+  }
+
+  static void pushReplaceSignUp(BuildContext context) {
+    Navigator.of(context).pushReplacementNamed(SignUpScreen.id);
+  }
+
+  static void pushReplaceHome(BuildContext context) {
+    Navigator.of(context).pushReplacementNamed(MainScreen.id);
+  }
 }

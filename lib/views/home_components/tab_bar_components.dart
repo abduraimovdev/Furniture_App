@@ -57,7 +57,7 @@ class _TabBarComponentsState extends State<TabBarComponents> {
           onPressed: () => widget.controller.buttonTabBar(index),
           text: listTitle[index],
           style: AppTextStyles.nunitoSansSemiBold14,
-          color: widget.controller.initialCategoryPage == index ? AppColors.c303030.color : AppColors.cF0F0F0.color,
+          color: widget.controller.initialCategoryPage == index ? AppColors.c303030 : AppColors.cF0F0F0,
           widget: listIcon[index],
         );
       },

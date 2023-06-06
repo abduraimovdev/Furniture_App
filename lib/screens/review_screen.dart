@@ -40,9 +40,9 @@ class _ReviewScreenState extends State<ReviewScreen> {
                 AppTextStyles.merriWeatherBold18.copyWith(color: Colors.black)),
         leading: GestureDetector(
             onTap: () => controller.goToBack(context),
-            child: Icon(
+            child: const Icon(
               CupertinoIcons.back,
-              color: AppColors.c303030.color,
+              color: AppColors.c303030,
               size: 30,
             )),
         elevation: 0,
@@ -104,8 +104,8 @@ class _ReviewScreenState extends State<ReviewScreen> {
               ],
             ),
             const SizedBox(height: 15),
-            Divider(
-              color: AppColors.cF0F0F0.color,
+            const Divider(
+              color: AppColors.cF0F0F0,
               thickness: 1,
             ),
             const SizedBox(height: 15),
@@ -137,7 +137,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
       ),
       bottomNavigationBar: BottomAppBar(
         height: 100,
-        color: AppColors.cFFFFFF.color,
+        color: AppColors.cFFFFFF,
         padding:
             const EdgeInsets.only(left: 30, right: 30, top: 20, bottom: 30),
         child: InkWell(
@@ -147,11 +147,11 @@ class _ReviewScreenState extends State<ReviewScreen> {
               alignment: Alignment.center,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  color: AppColors.c303030.color),
+                  color: AppColors.c303030),
               child: Text(
                 Strings.writeReviews.text,
                 style: AppTextStyles.nunitoSansRegular18
-                    .copyWith(color: AppColors.cFFFFFF.color),
+                    .copyWith(color: AppColors.cFFFFFF),
               ),
             )),
       ),
@@ -186,7 +186,7 @@ class ReviewItem extends StatelessWidget {
             padding: const EdgeInsets.only(left: 16, right: 16, top: 20),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-              color: AppColors.cFFFFFF.color,
+              color: AppColors.cFFFFFF,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_app/controllers/home_screen_controller.dart';
-import 'package:furniture_app/screens/favorite_screen.dart';
-import 'package:furniture_app/screens/notification_screen.dart';
-import 'package:furniture_app/screens/profile_screen.dart';
-import 'package:furniture_app/views/home_components/app_bar_button.dart';
-import 'package:furniture_app/views/home_components/bottom_navigation_bar.dart';
+import 'package:furniture_app/services/constants/colors.dart';
+import 'package:furniture_app/services/constants/strings.dart';
+import 'package:furniture_app/services/constants/svg_icons.dart';
+import 'package:furniture_app/services/theme/text_styles.dart';
+import 'package:furniture_app/views/app_bar_component.dart';
 import 'package:furniture_app/views/home_components/products_components.dart';
 import 'package:furniture_app/views/home_components/tab_bar_components.dart';
 
 class HomeScreen extends StatefulWidget {
   static const id = "/home";
 
-  const HomeScreen({super.key});
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -19,63 +19,57 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late final HomeController controller;
-  late final PageController pageController;
 
   @override
   void initState() {
-    pageController = PageController();
-    controller = HomeController(updater: setState, pageController: pageController);
     super.initState();
+    controller = HomeController(updater: setState);
   }
+
+  @override
+  void dispose() {
+    controller.close();
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: PageView(
-        controller: pageController,
-        onPageChanged: (index) => controller.buttonPageView(index),
-        children:  [
-          MainPage(controller: controller),
-          const FavoriteScreen(),
-          const NotificationScreen(),
-          const ProfileScreen(),
+      appBar: AppBarComponent(title: Column(
+        children: [
+          Text(
+            Strings.makeHome.text,
+            style: AppTextStyles.gelasioSemiBold18.copyWith(
+              color: AppColors.c909090,
+            ),
+          ),
+          Text(
+            Strings.beautiful.text,
+            style: AppTextStyles.gelasioBold30.copyWith(
+                color: AppColors.c303030,
+                fontSize: 18
+            ),
+          ),
         ],
-      ),
-      bottomNavigationBar:  CustomBottomNavigationBar(controller: controller),
-    );
-  }
-}
-
-class MainPage extends StatefulWidget {
-  final HomeController controller;
-
-  const MainPage({Key? key, required this.controller}) : super(key: key);
-
-  @override
-  State<MainPage> createState() => _MainPageState();
-}
-
-class _MainPageState extends State<MainPage> {
-
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar:  CustomAppBar(controller: widget.controller),
+      ), leading: SvgIcon.search, action: true, leadingPressed: () {}),
       body: Column(
         children: [
           Expanded(
-            flex: 2,
+            flex: size.height > 550 ? 2 : 6,
             child: Padding(
               padding: const EdgeInsets.only(left: 20, top: 10, right: 20),
-              child: TabBarComponents(controller: widget.controller),
+              child: TabBarComponents(controller: controller),
             ),
           ),
           Expanded(
             flex: 9,
             child: Padding(
               padding: const EdgeInsets.only(left: 20, right: 20),
-              child: CustomProduct(controller: widget.controller,),
+              child: CustomProduct(
+                controller: controller,
+              ),
             ),
           ),
         ],

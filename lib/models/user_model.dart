@@ -1,4 +1,4 @@
-class UserModel implements Comparable {
+class User implements Comparable {
   String userId;
   String name;
   String email;
@@ -9,7 +9,7 @@ class UserModel implements Comparable {
   List<int> cards;
   List<int> favourites;
 
-  UserModel({
+  User({
     required this.userId,
     required this.name,
     required this.email,
@@ -21,7 +21,7 @@ class UserModel implements Comparable {
     required this.favourites,
   });
 
-  factory UserModel.fromJson(Map<String, Object?> json) => UserModel(
+  factory User.fromJson(Map<String, Object?> json) => User(
         userId: json["userId"] as String,
         name: json["name"] as String,
         email: json["email"] as String,
@@ -47,13 +47,13 @@ class UserModel implements Comparable {
 
   @override
   String toString() {
-    return 'UserModel{id: $userId, name: $name, email: $email, password: $password, createdAt: $createdAt, modifyAt: $modifyAt, devices: $devices, cards: $cards, favourites: $favourites}';
+    return 'User{id: $userId, name: $name, email: $email, password: $password, createdAt: $createdAt, modifyAt: $modifyAt, devices: $devices, cards: $cards, favourites: $favourites}';
   }
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is UserModel &&
+      other is User &&
           runtimeType == other.runtimeType &&
           userId == other.userId &&
           name == other.name &&

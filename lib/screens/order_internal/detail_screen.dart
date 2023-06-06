@@ -13,7 +13,7 @@ class DetailScreen extends StatelessWidget {
       appBar: AppBar(
         leading:  BackButton(
           onPressed: ()=>navController.goToOrder(context),
-          color: AppColors.c303030.color,
+          color: AppColors.c303030,
         ),
       ),
       body: const Center(

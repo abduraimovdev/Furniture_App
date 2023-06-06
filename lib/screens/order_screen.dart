@@ -47,27 +47,27 @@ class _OrderScreenState extends State<OrderScreen>
       appBar: AppBar(
         leading: IconButton(
           onPressed: ()=>navController.goToProfile(context),
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
-            color: AppColors.c303030.color,
+            color: AppColors.c303030,
           ),
         ),
         elevation: 0,
         title: Text(
           Strings.myOrders.text,
           style: AppTextStyles.merriWeatherBold18.copyWith(
-            color: AppColors.c303030.color,
+            color: AppColors.c303030,
           ),
         ),
         bottom: TabBar(
-          indicatorColor: AppColors.c303030.color,
+          indicatorColor: AppColors.c303030,
           indicator: UnderlineTabIndicator(
-            borderSide: BorderSide(width: 3, color: AppColors.c303030.color),
+            borderSide: const BorderSide(width: 3, color: AppColors.c303030),
             insets: const EdgeInsets.symmetric(horizontal: 43),
             borderRadius: BorderRadius.circular(4),
           ),
           controller: controller,
-          labelColor: AppColors.c303030.color,
+          labelColor: AppColors.c303030,
           tabs: [
             Tab(
                 icon: Text(Strings.delivered.text,

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_app/controllers/sign_in_controller.dart';
+import 'package:furniture_app/services/app_routes.dart';
 import 'package:furniture_app/services/constants/colors.dart';
 import 'package:furniture_app/services/constants/strings.dart';
-import 'package:furniture_app/services/constants/svg_icons.dart';
 import 'package:furniture_app/services/theme/text_styles.dart';
+import 'package:furniture_app/views/auth_components/logo.dart';
 import 'package:furniture_app/views/custom_text_field.dart';
 import 'package:furniture_app/views/login_button.dart';
 
@@ -34,7 +35,6 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -47,28 +47,10 @@ class _SignInScreenState extends State<SignInScreen> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    // Logo
-                    Padding(
-                      padding:
-                      const EdgeInsets.only(top: 40, bottom: 30, left: 30),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            height: 1,
-                            width: width / 3.5,
-                            color: AppColors.cBDBDBD.color,
-                          ),
-                          SvgIcon.logo,
-                          Container(
-                            height: 1,
-                            width: width / 3.5,
-                            color: AppColors.cBDBDBD.color,
-                          ),
-                        ],
-                      ),
-                    ),
-                    // Text: Hello
+                    /// Logo
+                    const Logo(),
+
+                    /// Text: Hello
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
@@ -76,12 +58,13 @@ class _SignInScreenState extends State<SignInScreen> {
                         child: Text(
                           Strings.hello.text,
                           style: AppTextStyles.merriWeatherRegular30.copyWith(
-                            color: AppColors.c909090.color,
+                            color: AppColors.c909090,
                           ),
                         ),
                       ),
                     ),
-                    // Text: Welcome Back
+
+                    /// Text: Welcome Back
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
@@ -89,17 +72,18 @@ class _SignInScreenState extends State<SignInScreen> {
                         child: Text(
                           Strings.welcomeBack.text,
                           style: AppTextStyles.merriWeatherBold24.copyWith(
-                            color: AppColors.c303030.color,
+                            color: AppColors.c303030,
                             letterSpacing: 1.5,
                           ),
                         ),
                       ),
                     ),
                     const SizedBox(height: 25),
+
                     Container(
                       alignment: Alignment.centerLeft,
                       decoration: BoxDecoration(
-                        color: AppColors.cFFFFFF.color,
+                        color: AppColors.cFFFFFF,
                         boxShadow: [
                           BoxShadow(
                             offset: const Offset(0, 0),
@@ -111,7 +95,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       child: Center(
                         child: Column(
                           children: [
-                            // Input: Email
+                            /// Input: Email
                             const SizedBox(height: 35),
                             Padding(
                               padding: const EdgeInsets.only(left: 30),
@@ -122,7 +106,7 @@ class _SignInScreenState extends State<SignInScreen> {
                               ),
                             ),
 
-                            // Input: Email
+                            /// Input: Email
                             const SizedBox(height: 35),
                             Padding(
                               padding: const EdgeInsets.only(left: 30),
@@ -133,24 +117,28 @@ class _SignInScreenState extends State<SignInScreen> {
                               ),
                             ),
 
-                            // Text: Forgot Password
+                            /// Text: Forgot Password
                             const SizedBox(height: 35),
                             Text(
                               Strings.forgotPassword.text,
                               style: AppTextStyles.nunitoSansSemiBold18,
                             ),
 
-                            // Button: Sign in
+                            /// Button: Sign in
                             const SizedBox(height: 40),
-                            LoginButton(
-                              onPressed: () => controller.signIn(context),
-                              text: Strings.signIn.text,
+                            Builder(
+                              builder: (context) {
+                                return AppMainButton(
+                                  onPressWithContext: controller.signIn,
+                                  text: Strings.signIn.text,
+                                );
+                              }
                             ),
 
-                            // Text: Sign up
+                            /// Text: Sign up
                             const SizedBox(height: 30),
                             GestureDetector(
-                              onTap: () => controller.goToSignUp(context),
+                              onTap: () => AppRoutes.pushReplaceSignUp(context),
                               child: Text(
                                 Strings.signUp.text,
                                 style: AppTextStyles.nunitoSansSemiBold18,
@@ -176,3 +164,9 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 }
+
+
+
+
+
+

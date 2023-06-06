@@ -1,26 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_app/models/user_model.dart';
 import 'package:furniture_app/services/constants/colors.dart';
 import 'package:furniture_app/services/constants/svg_icons.dart';
+import 'package:furniture_app/services/data/database/users.dart';
 import 'package:furniture_app/services/theme/text_styles.dart';
-import '../services/constants/strings.dart';
+import 'package:furniture_app/services/constants/strings.dart';
 
 List<String> address = [
   "25 rue Robert Latouche, Nice, 06200, Côte D’azur, France",
   "18 rue Jean Medecin, Nice, 06200, Côte D’azur, France",
   "20 rue Promenade, Nice, 06200, Côte D’azur, France",
 ];
-
-
-class User{
- final String name;
- final List<String> address;
-
- User({required this.name, required this.address, });
-}
-
-final user = User(name: 'Bruno Fernandez', address: address, );
-
-
 
 
 class ShippingScreen extends StatefulWidget {
@@ -44,7 +34,7 @@ class _ShippingScreenState extends State<ShippingScreen> {
       /// #body
       body: Padding(
         padding: const EdgeInsets.only(left: 20, right: 20),
-        child: CustomListView(user: user,),
+        child: CustomListView(user: usersList.first,),
       ),
 
       /// #FloatingActionButtonLocation
@@ -77,7 +67,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         padding: const EdgeInsets.only(left: 15),
         child: BackButton(
           onPressed: () => customFunctionBack(context),
-          color: AppColors.c303030.color,
+          color: AppColors.c303030,
         ),
       ),
 
@@ -85,7 +75,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Text(
         Strings.shippingAddress.text,
         style: AppTextStyles.merriWeatherBold18.copyWith(
-          color: AppColors.c303030.color,
+          color: AppColors.c303030,
         ),
       ),
 
@@ -108,7 +98,7 @@ class CustomListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: user.address.length,
+      itemCount: address.length,
       shrinkWrap: true,
       itemBuilder: (context, i) {
 
@@ -126,7 +116,7 @@ class CustomListView extends StatelessWidget {
             const SizeHeight(),
 
             /// #full person address
-            CustomAddress(userName: user.name, address: user.address[i]),
+            CustomAddress(userName: user.name, address: address[i]),
           ],
         );
       },
@@ -185,9 +175,9 @@ class _AddressCheckBoxState extends State<AddressCheckBox> {
           /// #checkBox
           (check == checker)
               ? const Icon(Icons.check_box)
-              : Icon(
+              : const Icon(
             Icons.check_box_outline_blank,
-            color: AppColors.c909090.color,
+            color: AppColors.c909090,
           ),
 
            SizedBox( width: 15 * width / 375,),
@@ -196,7 +186,7 @@ class _AddressCheckBoxState extends State<AddressCheckBox> {
           Text(
             Strings.shippingAddress.text,
             style: AppTextStyles.nunitoSansRegular18
-                .copyWith(color: AppColors.c808080.color),
+                .copyWith(color: AppColors.c808080),
           ),
         ],
       ),
@@ -218,7 +208,7 @@ class CustomAddress extends StatelessWidget {
       height: 150,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: AppColors.cFFFFFF.color,
+        color: AppColors.cFFFFFF,
         boxShadow: [
           BoxShadow(
             blurRadius: 5,
@@ -249,15 +239,15 @@ class CustomAddress extends StatelessWidget {
                   /// #user name
                   Text(userName,
                       style: AppTextStyles.nunitoSansBold18.copyWith(
-                      color: AppColors.c303030.color,)
+                      color: AppColors.c303030,)
                   ),
 
                   /// #edit Button
                   FilledButton(
                     onPressed: () => customFunctionSaveIcon(context),
-                    style:  ButtonStyle(
-                      backgroundColor: const MaterialStatePropertyAll(Colors.transparent),
-                      overlayColor: MaterialStatePropertyAll(AppColors.cF0F0F0.color),
+                    style:  const ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll(Colors.transparent),
+                      overlayColor: MaterialStatePropertyAll(AppColors.cF0F0F0),
                     ),
                     child: SvgIcon.edit,
                   ),
@@ -266,7 +256,7 @@ class CustomAddress extends StatelessWidget {
             ),
           ),
 
-          Divider(thickness: 3, color: AppColors.cF0F0F0.color),
+          const Divider(thickness: 3, color: AppColors.cF0F0F0),
 
           /// #full_address
           Expanded(
@@ -279,7 +269,7 @@ class CustomAddress extends StatelessWidget {
               child: Text(
                 address,
                 style: AppTextStyles.nunitoSansRegular14
-                .copyWith(color: AppColors.c808080.color, height: 2),
+                .copyWith(color: AppColors.c808080, height: 2),
               ),
             ),
           ),
@@ -300,7 +290,7 @@ class CustomActionButton extends StatelessWidget {
     /// #addIcon
     return FloatingActionButton(
       elevation: 0.2,
-      backgroundColor: AppColors.cFFFFFF.color,
+      backgroundColor: AppColors.cFFFFFF,
       onPressed: () => customFunctionActionButton(context),
       child: SvgIcon.add,
     );

@@ -8,7 +8,6 @@ import 'package:furniture_app/views/product_components/product_screen_bottom_but
 import 'package:furniture_app/views/product_components/product_screen_data.dart';
 import 'package:furniture_app/views/product_components/product_screen_image.dart';
 
-
 class ProductScreen extends StatefulWidget {
   static const id = "/product";
   const ProductScreen({super.key});
@@ -49,10 +48,10 @@ class _ProductScreenState extends State<ProductScreen> {
       ],
     },
     colors: [
-      int.tryParse(AppColors.c808080.title) ?? 0xFF000000,
-      int.tryParse(AppColors.cB4916C.title) ?? 0xFF000000,
-      int.tryParse(AppColors.cE4CBAD.title) ?? 0xFF000000,
-      int.tryParse(AppColors.cE4CBAD.title) ?? 0xFF000000,
+      AppColors.c808080.value,
+      AppColors.cB4916C.value,
+      AppColors.cE4CBAD.value,
+      AppColors.cE4CBAD.value,
     ],
     sku: "12234567765",
     category: Category(
@@ -83,28 +82,36 @@ class _ProductScreenState extends State<ProductScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // double height = MediaQuery.of(context).size.height / 812;
-    // double width = MediaQuery.of(context).size.width / 375;
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          //
-          ProductScreenImage(
-            // backButton: () => controller.btnBack(context),
-            controller: controller,
-          ),
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: SizedBox(
+          height: height > 500 ? height : 700,
+          width: width,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ///
+              ProductScreenImage(
+                // backButton: () => controller.btnBack(context),
+                controller: controller,
+              ),
 
-          //
-          ProductScreenData(
-            controller: controller,
-          ),
+              ///
+              ProductScreenData(
+                controller: controller,
+              ),
 
-          ProductScreenBottomButton(
-            controller: controller,
+              ///
+              ProductScreenBottomButton(
+                controller: controller,
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

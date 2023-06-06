@@ -12,9 +12,8 @@ class ProductScreenImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(MediaQuery.of(context).size.height);
     return Expanded(
-      flex: 5,
+      flex: 8,
       child: ProductImages(
         controller: controller,
       ),

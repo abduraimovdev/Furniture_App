@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_app/models/base_notification.dart';
 import 'package:furniture_app/services/constants/colors.dart';
 import 'package:furniture_app/services/constants/images.dart';
-import 'package:furniture_app/services/theme/text_styles.dart';
 import 'package:furniture_app/services/constants/strings.dart';
 import 'package:furniture_app/services/constants/svg_icons.dart';
+import 'package:furniture_app/services/data/database/notifications.dart';
+import 'package:furniture_app/services/theme/text_styles.dart';
 
 class NotificationScreen extends StatefulWidget {
   static const id = "/notification";
@@ -18,340 +20,169 @@ class _NotificationScreenState extends State<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
     //double myWidth = MediaQuery.of(context).size.width;
-    return  Scaffold(
+    return Scaffold(
       /// #appBar
       appBar: const NotificationAppBar(),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            /// #firstContainer
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: 120,
-              color: AppColors.cF0F0F0.color,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 10, right: 20, top: 15),
-                child: Row(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(top: 8,bottom: 8,left: 12,right: 12),
-                      child:MyClipRRect(),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Flexible(
-                            child: Text(
-                              "Your order #12345 has been confirmed",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                              ),
-                              textAlign: TextAlign.start,
-                            ),
+      body: ListView.builder(
+          itemExtent: 115,
+          itemCount: notificationDatabase.length,
+          itemBuilder: (context, index) {
+            if (notificationDatabase[index].data is MessageModel) {
+              return Container(
+                width: MediaQuery.of(context).size.width,
+                height: 120,
+                decoration: BoxDecoration(
+                  color: (notificationDatabase[index].data as MessageModel)
+                              .status ==
+                          "New"
+                      ? AppColors.cF0F0F0
+                      : Colors.white,
+                  border: (index + 1 != notificationDatabase.length &&
+                          (notificationDatabase[index].data as MessageModel)
+                                  .status !=
+                              "New" &&
+                          notificationDatabase[index].data is MessageModel &&
+                          notificationDatabase[index + 1].data is MessageModel)
+                      ? const Border(
+                          bottom: BorderSide(
+                            color: AppColors.cF0F0F0,
                           ),
-                          const SizedBoxHeight5(),
-                           Flexible(
-                            child: Text(
-                              Strings.loremIpsum.text,
-                              style: AppTextStyles.nunitoSansRegular12
-                                  .copyWith(color: AppColors.c808080.color),
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: Text(
-                              "New",
-                              style: TextStyle(
-                                  color: const Color(0xFFF2994A),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: AppTextStyles
-                                      .nunitoSansBold14.fontFamily),
-                            ),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
+                        )
+                      : null,
                 ),
-              ),
-            ),
-            /// #secondSizedBox
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: 120,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 10, right: 20, top: 8),
-                child: Row(
-                  children: [
-                     Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(15),
-                        child: Image(image: AppImage.product11.img),
-                      ),
-                    ),
-                    const SizedBoxWidth5(),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Flexible(
-                            child: Text(
-                              "Your order #12345 has been confirmed",
-                              style: TextStyle(
-                                height: 2.2,
-                                fontFamily:
-                                AppTextStyles.nunitoSansBold12.fontFamily,
-                                fontWeight: FontWeight.w700,
-                              ),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 20, top: 8),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: Image(
+                            image: AssetImage(
+                              (notificationDatabase[index].data as MessageModel)
+                                  .image as String,
                             ),
+                            height: 95,
+                            width: 95,
+                            fit: BoxFit.cover,
                           ),
-                          const SizedBoxHeight5(),
-                          Flexible(
-                            child: Text(
-                              Strings.loremIpsum.text,
-                              style: AppTextStyles.nunitoSansRegular12
-                                  .copyWith(color: AppColors.c808080.color),
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
-                    )
-                  ],
+                      const SizedBoxWidth5(),
+                      Expanded(
+                        child: Stack(
+                          children: [
+                            Align(
+                              alignment: Alignment.bottomRight,
+                              child: Text(
+                                  (notificationDatabase[index].data
+                                          as MessageModel)
+                                      .status,
+                                  style: AppTextStyles.nunitoSansBold16
+                                      .copyWith(
+                                          color: const Color(0xFFF2994A))),
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Flexible(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: 5),
+                                    child: Text(
+                                      (notificationDatabase[index].data
+                                              as MessageModel)
+                                          .title,
+                                      maxLines: 2,
+                                      style: TextStyle(
+                                        fontFamily: AppTextStyles
+                                            .nunitoSansBold12.fontFamily,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBoxHeight5(),
+                                Flexible(
+                                  child: Text(
+                                    (notificationDatabase[index].data
+                                            as MessageModel)
+                                        .message,
+                                    maxLines: 3,
+                                    style: AppTextStyles.nunitoSansRegular12
+                                        .copyWith(
+                                            color: AppColors.c808080,
+                                            fontSize: 13),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ),
-            /// #thirdContainer
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: 120,
-              color: AppColors.cF0F0F0.color,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 10, right: 20, top: 15),
-                child: Row(
-                  children: [
-                    const SizedBoxWidth5(),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Flexible(
-                            child: Text(
-                              "Discover hot sale furniture this week",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                              ),
-                              textAlign: TextAlign.start,
-                            ),
+              );
+            } else {
+              return Container(
+                color: AppColors.cF0F0F0,
+                width: MediaQuery.of(context).size.width,
+                height: 100,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 20, top: 8),
+                  child: Stack(
+                    children: [
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: Text(
+                          (notificationDatabase[index].data as NewsModel)
+                              .status,
+                          style: AppTextStyles.nunitoSansBold14.copyWith(
+                            fontWeight: FontWeight.w900,
+                            color: const Color(0xFFEB5757),
                           ),
-                         const SizedBoxHeight5(),
-                           Flexible(
-                            child: Text(
-                              Strings.loremIpsum.text,
-                              style: AppTextStyles.nunitoSansRegular12
-                                  .copyWith(color: AppColors.c808080.color),
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: Text(
-                              "HOT!",
-                              style: TextStyle(
-                                  color: const Color(0xFFEB5757),
-                                  fontSize: 14,
-                                  fontFamily:
-                                      AppTextStyles.nunitoSansBold14.fontFamily,
-                                  fontWeight: FontWeight.w900),
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            /// #fourthSizedBox
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: 120,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 10, right: 20, top: 8),
-                child: Row(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.all(8),
-                      child: MyClipRRect(),
-                    ),
-                    const SizedBoxWidth5(),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      Row(
                         children: [
-                          Flexible(
-                            child: Text(
-                              "Your order #1234 has been shipped successfully",
-                              style: TextStyle(
-                                fontFamily:
-                                AppTextStyles.nunitoSansBold12.fontFamily,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ),
-                          const SizedBoxHeight5(),
-                          Flexible(
-                            child: Text(
-                              "Please help us to confirm and rate your order to get 10% discount code for next order.",
-                              style: AppTextStyles.nunitoSansRegular12
-                                  .copyWith(color: AppColors.c808080.color),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Flexible(
+                                  child: Text(
+                                    (notificationDatabase[index].data
+                                            as NewsModel)
+                                        .title,
+                                    maxLines: 2,
+                                    style: AppTextStyles.nunitoSansBold16,
+                                  ),
+                                ),
+                                const SizedBoxHeight5(),
+                                Flexible(
+                                  child: Text(
+                                    (notificationDatabase[index].data
+                                            as NewsModel)
+                                        .message,
+                                    maxLines: 3,
+                                    style: AppTextStyles.nunitoSansRegular14
+                                        .copyWith(
+                                            color: AppColors.c808080,
+                                            fontSize: 13),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
                       ),
-                    )
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ),
-            const MyDivider(),
-            /// #fifthSizedBox
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: 120,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 10, right: 20, top: 8),
-                child: Row(
-                  children: [
-                    const Padding(
-                      padding:  EdgeInsets.all(8),
-                      child: MyClipRRect(),
-                    ),
-                    const SizedBoxWidth5(),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Flexible(
-                            child: Text(
-                              "Your order #12345 has been confirmed",
-                              style: TextStyle(
-                                height: 2.2,
-                                fontFamily:
-                                AppTextStyles.nunitoSansBold12.fontFamily,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ),
-                          const SizedBoxHeight5(),
-                          Flexible(
-                            child: Text(
-                              Strings.loremIpsum.text,
-                              style: AppTextStyles.nunitoSansRegular12
-                                  .copyWith(color: AppColors.c808080.color),
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            const MyDivider(),
-            /// # sixthSizedBox
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: 120,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 10, right: 20, top: 8),
-                child: Row(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.all(8),
-                      child: MyClipRRect(),
-                    ),
-                    const SizedBoxWidth5(),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Flexible(
-                            child: Text(
-                              "Your order #1234 has been canceled",
-                              style: TextStyle(
-                                height: 2.2,
-                                fontFamily:
-                                AppTextStyles.nunitoSansBold12.fontFamily,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ),
-                          const SizedBoxHeight5(),
-                          Flexible(
-                            child: Text(
-                              Strings.loremIpsum.text,
-                              style: AppTextStyles.nunitoSansRegular12
-                                  .copyWith(color: AppColors.c808080.color),
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            const MyDivider(),
-            /// # seventhSizedBox
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: 120,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 10, right: 20, top: 8),
-                child: Row(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.all(8),
-                      child: MyClipRRect(),
-                    ),
-                    const SizedBoxWidth5(),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Flexible(
-                            child: Text(
-                              "Your order #12345 has been shipped successfully",
-                              style: TextStyle(
-                                fontFamily:
-                                    AppTextStyles.nunitoSansBold12.fontFamily,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ),
-                          const SizedBoxHeight5(),
-                          Flexible(
-                            child: Text(
-                              "Please help us to confirm and rate your order to get 10% discount code for next order.",
-                              style: AppTextStyles.nunitoSansRegular12
-                                  .copyWith(color: AppColors.c808080.color),
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+              );
+            }
+          }),
       // bottomNavigationBar: const MyBottomAppBar(),
     );
   }
@@ -447,12 +278,13 @@ class _MyBottomAppBarState extends State<MyBottomAppBar> {
   }
 }
 
-class NotificationAppBar extends StatelessWidget implements PreferredSizeWidget {
+class NotificationAppBar extends StatelessWidget
+    implements PreferredSizeWidget {
   const NotificationAppBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  AppBar(
+    return AppBar(
       toolbarHeight: 150,
       leadingWidth: 50,
       leading: Padding(

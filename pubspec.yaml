@@ -31,7 +31,11 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-    - assets/database/
+    - assets/images/images_product_armchair/
+    - assets/images/images_product_bed/
+    - assets/images/images_product_chair/
+    - assets/images/images_product_lamb/
+    - assets/images/images_product_table/
 
   fonts:
     - family: Gelasio
@@ -42,6 +46,8 @@ flutter:
           weight: 500
         - asset: assets/fonts/gelasio/Gelasio-Bold.ttf
           weight: 700
+
+
     - family: NunitoSans
       fonts:
         - asset: assets/fonts/nunito_sans/NunitoSans_10pt-Bold.ttf

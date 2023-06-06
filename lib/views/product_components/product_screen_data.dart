@@ -1,35 +1,29 @@
 import 'package:flutter/cupertino.dart';
 import 'package:furniture_app/controllers/product_controller.dart';
-import 'package:furniture_app/screens/review_screen.dart';
-
-import '../../services/constants/colors.dart';
-import '../../services/constants/strings.dart';
-import '../../services/constants/svg_icons.dart';
-import '../../services/theme/text_styles.dart';
-import 'icon_button.dart';
+import 'package:furniture_app/services/constants/colors.dart';
+import 'package:furniture_app/services/constants/strings.dart';
+import 'package:furniture_app/services/constants/svg_icons.dart';
+import 'package:furniture_app/services/theme/text_styles.dart';
+import 'package:furniture_app/views/product_components/icon_button.dart';
 
 class ProductScreenData extends StatelessWidget {
+  final ProductController controller;
   const ProductScreenData({
     super.key,
-
     required this.controller,
   });
 
-
-  final ProductController controller;
-
   @override
   Widget build(BuildContext context) {
-        double height = MediaQuery.of(context).size.height / 812;
+    double height = MediaQuery.of(context).size.height / 812;
     double width = MediaQuery.of(context).size.width / 375;
     return Expanded(
-      flex: 3,
+      flex: MediaQuery.of(context).size.height > 900 ? 5 : 6,
       child: Padding(
-        padding: EdgeInsets.only(
-            left: 25 * width,
-            right: 25 * width,
-            top: 25 * height,
-            bottom: 25 * height),
+        padding: EdgeInsets.symmetric(
+          horizontal: 25 * width,
+          vertical: 25 * height,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -51,11 +45,9 @@ class ProductScreenData extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       AppIconButton(
-                        w: width,
-                        h: height,
-                        icon: Icon(
+                        icon: const Icon(
                           CupertinoIcons.add,
-                          color: AppColors.c909090.color,
+                          color: AppColors.c909090,
                           size: 25,
                         ),
                         onPress: controller.increment,
@@ -65,11 +57,9 @@ class ProductScreenData extends StatelessWidget {
                         style: AppTextStyles.nunitoSansBold18,
                       ),
                       AppIconButton(
-                        w: width,
-                        h: height,
-                        icon: Icon(
+                        icon: const Icon(
                           CupertinoIcons.minus,
-                          color: AppColors.c909090.color,
+                          color: AppColors.c909090,
                           size: 25,
                         ),
                         onPress: controller.decrement,
@@ -97,13 +87,12 @@ class ProductScreenData extends StatelessWidget {
                 ),
                 SizedBox(width: 20 * width),
                 GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pushNamed(ReviewScreen.id);
-                  },
+                  onTap: () => controller.goToReview(context),
                   child: Text(
-                    "(50 reviews)",
-                    style: AppTextStyles.nunitoSansBold14
-                        .copyWith(color: AppColors.c808080.color),
+                    "(${controller.product.review.length} reviews)",
+                    style: AppTextStyles.nunitoSansBold14.copyWith(
+                      color: AppColors.c808080,
+                    ),
                   ),
                 ),
               ],

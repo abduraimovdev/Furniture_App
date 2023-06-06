@@ -27,8 +27,8 @@ class AppThemeData {
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           elevation: 10,
-          shadowColor: AppColors.c303030.color,
-          backgroundColor: AppColors.c303030.color,
+          shadowColor: AppColors.c303030,
+          backgroundColor: AppColors.c303030,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5),
           ),
@@ -38,18 +38,18 @@ class AppThemeData {
     );
   }
 
-  static final ColorScheme lightColorScheme = ColorScheme(
-    secondary: AppColors.c303030.color,
-    onSecondary: AppColors.cFFFFFF.color,
-    error: AppColors.cEB5757.color,
-    onError: AppColors.cEB5757.color,
-    onBackground: AppColors.c808080.color,
-    primary: AppColors.cF9F9F9.color,
-    background: AppColors.cF9F9F9.color,
-    onPrimary: AppColors.cF9F9F9.color,
-    surfaceVariant: AppColors.cFFFFFF.color,
-    surface: AppColors.cFFFFFF.color,
-    onSurface: AppColors.cFFFFFF.color,
+  static const ColorScheme lightColorScheme = ColorScheme(
+    secondary: AppColors.c303030,
+    onSecondary: AppColors.cFFFFFF,
+    error: AppColors.cEB5757,
+    onError: AppColors.cEB5757,
+    onBackground: AppColors.c808080,
+    primary: AppColors.cF9F9F9,
+    background: AppColors.cF9F9F9,
+    onPrimary: AppColors.cF9F9F9,
+    surfaceVariant: AppColors.cFFFFFF,
+    surface: AppColors.cFFFFFF,
+    onSurface: AppColors.cFFFFFF,
     brightness: Brightness.light,
   );
 
