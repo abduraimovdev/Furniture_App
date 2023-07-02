@@ -1,6 +1,6 @@
 class Address implements Comparable<Address> {
   String id;
-  String usedld;
+  String usedid;
   String createdAt;
   String modifyAt;
   String title;
@@ -15,7 +15,7 @@ class Address implements Comparable<Address> {
 
   Address(
       {required this.id,
-      required this.usedld,
+      required this.usedid,
       required this.createdAt,
       required this.modifyAt,
       required this.title,
@@ -35,7 +35,7 @@ class Address implements Comparable<Address> {
 
   factory Address.fromJson(Map<String, Object?> json) => Address(
       id: json["id"] as String,
-      usedld: json["usedld"] as String,
+      usedid: json["usedld"] as String,
       createdAt: json["createdAt"] as String,
       modifyAt: json["modifyAt"] as String,
       title: json["title"] as String,
@@ -50,7 +50,7 @@ class Address implements Comparable<Address> {
 
   Map<String, Object?> toJson() => {
         "id": id,
-        "usedld": usedld,
+        "usedld": usedid,
         "createdAt": createdAt,
         "modifyAt": modifyAt,
         "title": title,
@@ -66,7 +66,7 @@ class Address implements Comparable<Address> {
 
   @override
   String toString() {
-    return 'Address{id: $id, usedld: $usedld, createdAt: $createdAt, modifyAt: $modifyAt, title: $title, address: $address, lat: $lat, Ing: $Ing, zipCode: $zipCode, street: $street, city: $city, region: $region, country: $country}';
+    return 'Address{id: $id, usedld: $usedid, createdAt: $createdAt, modifyAt: $modifyAt, title: $title, address: $address, lat: $lat, Ing: $Ing, zipCode: $zipCode, street: $street, city: $city, region: $region, country: $country}';
   }
 
   @override
@@ -75,7 +75,7 @@ class Address implements Comparable<Address> {
       other is Address &&
           runtimeType == other.runtimeType &&
           id == other.id &&
-          usedld == other.usedld &&
+          usedid == other.usedid &&
           createdAt == other.createdAt &&
           modifyAt == other.modifyAt &&
           title == other.title &&
@@ -91,7 +91,7 @@ class Address implements Comparable<Address> {
   @override
   int get hashCode =>
       id.hashCode ^
-      usedld.hashCode ^
+      usedid.hashCode ^
       createdAt.hashCode ^
       modifyAt.hashCode ^
       title.hashCode ^

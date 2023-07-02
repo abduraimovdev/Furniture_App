@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:furniture_app/controllers/base_controller.dart';
+import 'package:furniture_app/models/address_model.dart';
 import 'package:furniture_app/models/user_model.dart';
 import 'package:furniture_app/services/app_routes.dart';
 import 'package:furniture_app/services/config/checker.dart';
@@ -64,6 +65,7 @@ class SignUpController extends BaseController {
         devices: [],
         cards: [],
         favourites: [],
+        addresses: [Address(id: "1", usedid: "1", createdAt: DateTime.now().toString(), modifyAt: DateTime.now().toString(), title: "Address", address: "Address", lat: 0.1, Ing: 0.1, zipCode: "zipCode", street: "", city: "", region: "", country: "")],
       );
 
       usersList.add(newUser);

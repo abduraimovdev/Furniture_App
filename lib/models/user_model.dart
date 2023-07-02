@@ -1,3 +1,5 @@
+import 'package:furniture_app/models/address_model.dart';
+
 class User implements Comparable {
   String userId;
   String name;
@@ -8,6 +10,7 @@ class User implements Comparable {
   List devices;
   List<int> cards;
   List<int> favourites;
+  List<Address> addresses;
 
   User({
     required this.userId,
@@ -19,6 +22,7 @@ class User implements Comparable {
     required this.devices,
     required this.cards,
     required this.favourites,
+    required this.addresses,
   });
 
   factory User.fromJson(Map<String, Object?> json) => User(
@@ -31,6 +35,7 @@ class User implements Comparable {
         devices: json["devices"] as List,
         cards: json["cards"] as List<int>,
         favourites: json["favourites"] as List<int>,
+        addresses: json["addresses"] as List<Address>,
       );
 
   Map<String, dynamic> toJson() => {
@@ -42,12 +47,13 @@ class User implements Comparable {
         "modifyAt": modifyAt,
         "devices": devices,
         "cards": cards,
-        "favourites": favourites
+        "favourites": favourites,
+        "addresses": addresses
       };
 
   @override
   String toString() {
-    return 'User{id: $userId, name: $name, email: $email, password: $password, createdAt: $createdAt, modifyAt: $modifyAt, devices: $devices, cards: $cards, favourites: $favourites}';
+    return 'User{id: $userId, name: $name, email: $email, password: $password, createdAt: $createdAt, modifyAt: $modifyAt, devices: $devices, cards: $cards, favourites: $favourites, addresses: $addresses}';
   }
 
   @override
@@ -63,12 +69,13 @@ class User implements Comparable {
           modifyAt == other.modifyAt &&
           devices == other.devices &&
           cards == other.cards &&
-          favourites == other.favourites;
+          favourites == other.favourites &&
+          addresses == other.addresses;
 
   @override
   int get hashCode {
     return Object.hash(userId, name, email, password, createdAt, modifyAt,
-        devices, cards, favourites);
+        devices, cards, favourites, addresses);
   }
 
   @override

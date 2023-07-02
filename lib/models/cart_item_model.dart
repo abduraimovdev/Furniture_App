@@ -53,18 +53,11 @@ class CartItem implements Comparable<CartItem> {
       identical(this, other) ||
       other is CartItem &&
           runtimeType == other.runtimeType &&
-          id == other.id &&
-          product == other.product &&
-          total == other.total &&
-          createAt == other.createAt &&
-          modifyAt == other.modifyAt &&
-          userId == other.userId &&
-          quantity == other.quantity && 
-          color == other.color;
+          id == other.id && userId == other.userId;
 
   @override
   int get hashCode =>
-      Object.hash(id, product, total, createAt, modifyAt, userId, quantity, color);
+      Object.hash(id, userId);
 
   @override
   int compareTo(other) {
